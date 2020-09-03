@@ -23,9 +23,6 @@ import gc
 import numpy as np
 import xarray as xr
 
-from .dc_mosaic import restore_or_convert_dtypes
-from .dc_utilities import create_default_clean_mask
-
 def NDWI(data, normalize=False, band_pair=0):
     """
     Computes various versions of the Normalized Difference Water Index for an `xarray.Dataset`.
@@ -99,7 +96,9 @@ def wofs_classify(dataset_in, clean_mask=None, x_coord='longitude', y_coord='lat
     Throws:
         ValueError - if dataset_in is an empty xarray.Dataset.
     """
-
+    import dask
+    from .dc_utilities import create_default_clean_mask
+    
     def _band_ratio(a, b):
         """
         Calculates a normalized ratio index

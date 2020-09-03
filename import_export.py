@@ -1,6 +1,5 @@
 import numpy as np
 
-from .dc_utilities import _get_transform_from_xr
 from . import dc_utilities
 
 ## Export ##
