@@ -1,4 +1,3 @@
-from .dc_mosaic import (ls7_unpack_qa, ls8_unpack_qa, ls5_unpack_qa)
 import numpy as np
 import xarray as xr
 
@@ -72,6 +71,8 @@ def landsat_qa_clean_mask(dataset, platform, cover_types=['clear', 'water']):
     clean_mask: xarray.DataArray
         An xarray DataArray with the same number and order of coordinates as in `dataset`.
     """
+    from .dc_mosaic import (ls7_unpack_qa, ls8_unpack_qa, ls5_unpack_qa)
+    
     processing_options = {
         "LANDSAT_5": ls5_unpack_qa,
         "LANDSAT_7": ls7_unpack_qa,

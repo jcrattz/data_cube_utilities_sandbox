@@ -65,6 +65,4 @@ def create_local_dask_cluster(spare_mem='3Gb',
     configure_s3_access(aws_unsigned=aws_unsigned,  
                         client=client, **configure_s3_access_kwargs)
 
-    # Show the dask cluster settings
-    if display_client:
-        display(client)
+    return client

@@ -9,14 +9,7 @@ import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 from matplotlib.colors import LinearSegmentedColormap
-
-from scipy.interpolate import CubicSpline
 import time
-
-from .curve_fitting import gaussian_fit, gaussian_filter_fit, poly_fit, fourier_fit
-from .scale import xr_scale, np_scale
-from .dc_time import _n64_to_datetime, _n64_datetime_to_scalar, _scalar_to_n64_datetime
-
 
 from .plotter_utils_consts import n_pts_smooth, default_fourier_n_harm
 
@@ -134,6 +127,9 @@ def xarray_time_series_plot(dataset, plot_descs, x_coord='longitude',
     :Authors:
         John Rattz (john.c.rattz@ama-inc.com)
     """
+    from .scale import np_scale
+    from .dc_time import _n64_to_datetime, _n64_datetime_to_scalar, _scalar_to_n64_datetime
+    
     fig_params = {} if fig_params is None else fig_params
 
     # Lists of plot types that can and cannot accept many-to-one aggregation
@@ -608,6 +604,9 @@ def get_curvefit(x, y, fit_type, x_smooth=None, n_pts=n_pts_smooth, fit_kwargs=N
     :Authors:
         John Rattz (john.c.rattz@ama-inc.com)
     """
+    from scipy.interpolate import CubicSpline
+    from .curve_fitting import gaussian_fit, gaussian_filter_fit, poly_fit, fourier_fit
+    
     interpolation_curve_fits = ['gaussian', 'gaussian_filter',
                                 'poly', 'cubic_spline']
     extrapolation_curve_filts = ['fourier']
